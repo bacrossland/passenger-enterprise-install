@@ -1,12 +1,14 @@
 #
-# Cookbook Name:: passenger_enterprise
+# Cookbook Name:: passenger-enterprise-install
 # Based on passenger_apache2, adapted for nginx too.
 # Recipe:: default
 #
+# Author:: Bryan Crossland (<bacrossland@gmail.com>)
 # Author:: Joshua Timberman (<joshua@opscode.com>)
 # Author:: Joshua Sierles (<joshua@37signals.com>)
 # Author:: Michael Hale (<mikehale@gmail.com>)
 #
+# Copyright:: 2015, Bryan Crossland
 # Copyright:: 2009, Opscode, Inc
 # Copyright:: 2009, 37signals
 # Coprighty:: 2009, Michael Hale
@@ -23,8 +25,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe "ruby_enterprise"
+include_recipe 'ruby-enterprise-install'
 
-ree_gem "passenger" do
+ree_gem 'passenger' do
   version node[:passenger_enterprise][:version]
 end

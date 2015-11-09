@@ -1,11 +1,13 @@
 #
-# Cookbook Name:: passenger_enterprise
+# Cookbook Name:: passenger-enterprise-install
 # Recipe:: nginx
 #
+# Author:: Bryan Crossland (<bacrossland@gmail.com>)
 # Author:: Joshua Timberman (<joshua@opscode.com>)
 # Author:: Joshua Sierles (<joshua@37signals.com>)
 # Author:: Michael Hale (<mikehale@gmail.com>)
 #
+# Copyright:: 2015, Bryan Crossland
 # Copyright:: 2009, Opscode, Inc
 # Copyright:: 2009, 37signals
 # Coprighty:: 2009, Michael Hale
@@ -22,15 +24,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe "nginx::source"
-include_recipe "passenger_enterprise"
+include_recipe 'nginx::source'
+include_recipe 'passenger-enterprise-install'
 
 configure_flags = node[:nginx][:configure_flags].join(" ")
 nginx_install = node[:nginx][:install_path]
 nginx_version = node[:nginx][:version]
 nginx_dir = node[:nginx][:dir]
 
-execute "passenger_nginx_module" do
+execute 'passenger_nginx_module' do
   command %Q{
     #{node[:ruby_enterprise][:install_path]}/bin/passenger-install-nginx-module \
       --auto --prefix=#{nginx_install} \
@@ -42,9 +44,9 @@ execute "passenger_nginx_module" do
 end
 
 template "#{nginx_dir}/conf.d/passenger.conf" do
-  source "passenger_nginx.conf.erb"
-  owner "root"
-  group "root"
-  mode "0644"
-  notifies :restart, resources(:service => "nginx")
+  source 'passenger_nginx.conf.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+  notifies :restart, resources(:service => 'nginx')
 end

@@ -1,12 +1,14 @@
 #
-# Cookbook Name:: passenger_enterprise
+# Cookbook Name:: passenger-enterprise-install
 # Based on passenger_apache2
 # attributes:: passenger_enterprise
 #
+# Author:: Bryan Crossland (<bacrossland@gmail.com>)
 # Author:: Joshua Timberman (<joshua@opscode.com>)
 # Author:: Joshua Sierles (<joshua@37signals.com>)
 # Author:: Michael Hale (<mikehale@gmail.com>)
 #
+# Copyright:: 2015, Bryan Crossland
 # Copyright:: 2009, Opscode, Inc
 # Copyright:: 2009, 37signals
 # Coprighty:: 2009, Michael Hale
@@ -23,6 +25,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-default[:passenger_enterprise][:version]     = "2.2.15"
+default[:passenger_enterprise][:version]     = '2.2.15'
 default[:passenger_enterprise][:root_path]   = "/opt/ruby-enterprise/lib/ruby/gems/1.8/gems/passenger-#{passenger_enterprise[:version]}"
 default[:passenger_enterprise][:module_path] = "#{passenger_enterprise[:root_path]}/ext/apache2/mod_passenger.so"
